@@ -1,4 +1,5 @@
 import express from 'express';
+import { ProductContainer } from '../controllers';
 
 const router = express.Router();
 
@@ -14,4 +15,6 @@ router.get('/', (req, res, next) => {
   res.send(dataResponse);
 });
 
-module.exports = router;
+router.get('/products', ProductContainer.getAllProduct);
+
+export default router;
