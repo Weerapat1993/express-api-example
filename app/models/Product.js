@@ -1,10 +1,6 @@
-import Connection from '../config/database';
+import DB from '../config/database';
 
-const Product = new Connection({
-  tableName: 'products',
-});
-
-export default Product;
+export default DB('products');
 
 // import { Schema, model } from 'mongoose';
 
