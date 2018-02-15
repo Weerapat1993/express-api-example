@@ -10,6 +10,10 @@ const migrations = {
   },
   migrations: {
     tableName: 'migrations',
+    directory: './database/migrations',
+  },
+  seeds: {
+    directory: './database/seeds',
   },
 };
 
