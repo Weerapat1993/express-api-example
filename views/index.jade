@@ -3,3 +3,33 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  table.table.table-bordered.text-center
+    thead.bg-info
+      tr
+        th.text-center Method
+        th.text-center Path
+        th.text-center Description
+    tbody.bg-white
+      tr
+        td GET
+        td 
+          a(href='/api/products' target='_blank') /api/products
+        td Get Product Lists
+      tr
+        td POST
+        td 
+          a(href='/api/products' target='_blank') /api/products
+        td Create Product List
+      tr
+        td PUT
+        td 
+          a(href='/api/products' target='_blank') /api/products
+        td Update Product List
+      tr
+        td DELETE
+        td 
+          a(href='/api/products' target='_blank') /api/products
+        td Delete Product List
+
+
