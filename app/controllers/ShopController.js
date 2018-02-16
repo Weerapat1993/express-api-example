@@ -1,4 +1,5 @@
 import { Shop } from '../models';
+import { SuccessCase, ErrorCase } from '../tools/RestfulAPI';
 
 /**
  * Get all Shop
@@ -6,24 +7,13 @@ import { Shop } from '../models';
  * @param {{ json: Function, status: Function, send: Function }} res
  * @returns void
  */
-export const getAllShop = (req, res) => {
-  Shop.fetch()
-    .then((data) => {
-      const dataResponse = {
-        data,
-        code: 200,
-        status: 'OK',
-      };
-      res.json(dataResponse);
-    })
-    .catch((err) => {
-      const errorResponse = {
-        error: err,
-        code: 500,
-        status: 'Error',
-      };
-      res.status(500).send(errorResponse);
-    });
+export const getAllShop = async (req, res) => {
+  try {
+    const shops = await Shop.fetch();
+    await res.json(SuccessCase(shops));
+  } catch (error) {
+    res.status(500).send(ErrorCase(error));
+  }
 };
 
 export default getAllShop;

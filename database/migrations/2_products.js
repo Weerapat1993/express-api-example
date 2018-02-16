@@ -13,8 +13,7 @@ exports.up = async (db) => {
       table.string('product_id').primary();
       table.string('product_name', 100);
       table.integer('product_price');
-      table.string('shop_id', 255);
-      table.foreign('shop_id').references('shop_id').inTable('shops');
+      table.string('shop_id', 255).references('shops.shop_id');
       table.timestamps(false, true);
     });
 };

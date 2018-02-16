@@ -1,7 +1,11 @@
 import bookshelf from '../config/database';
+import { Shop } from './';
 
 const Products = bookshelf.Model.extend({
   tableName: 'products',
+  joinShop: function() {
+    return this.hasOne(Shop, 'shop_id', 'shop_id');
+  },
 });
 
 export default Products.collection();

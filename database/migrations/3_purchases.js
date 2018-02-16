@@ -12,8 +12,7 @@ exports.up = async (db) => {
     .createTable(TABLE_NAME, (table) => {
       table.string('purchase_id').primary();
       table.text('products', 'longtext');
-      table.string('shop_id', 255);
-      table.foreign('shop_id').references('shop_id').inTable('shops');
+      table.string('shop_id', 255).references('shops.shop_id');
       table.timestamps(false, true);
     });
 };
