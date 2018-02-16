@@ -1,13 +1,13 @@
-import { Product } from '../models';
+import { Shop } from '../models';
 
 /**
- * Get all posts
+ * Get all Shop
  * @param {Object} req
  * @param {{ json: Function, status: Function, send: Function }} res
  * @returns void
  */
-export const getAllProduct = (req, res) => {
-  Product.select('*')
+export const getAllShop = (req, res) => {
+  Shop.fetch()
     .then((data) => {
       const dataResponse = {
         data,
@@ -26,5 +26,4 @@ export const getAllProduct = (req, res) => {
     });
 };
 
-export default getAllProduct;
-
+export default getAllShop;

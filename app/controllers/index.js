@@ -1,5 +1,11 @@
-import * as ProductContainer from './ProductContainer';
+import * as ProductController from './ProductController';
+import * as ShopController from './ShopController';
+import * as PurchaseController from './PurchaseController';
+import * as RequestController from './RequestController';
 
 export {
-  ProductContainer,
+  ProductController,
+  ShopController,
+  PurchaseController,
+  RequestController,
 };

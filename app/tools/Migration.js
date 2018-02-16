@@ -96,13 +96,51 @@ class Table {
     return this
   }
 
+  /**
+   * Field Type `Text`
+   * @param {string} name
+   * @param {string} textType
+   * @return {this}
+   */
+  text(name, textType) {
+    return this
+  }
+
 
   /**
    * Timestamps
-   * @param {boolean} field 
-   * @param {boolean} limit 
+   * @param {boolean} field
+   * @param {boolean} limit
+   * @return {this}
    */
   timestamps(field, limit) {
+    return this
+  }
+
+  /**
+   * FK field name
+   * @param {string} name
+   * @return {this}
+   */
+  foreign(name) {
+    return this
+  }
+
+  /**
+   * FK field name
+   * @param {boolean} name
+   * @return {this}
+   */
+  references(name) {
+    return this
+  }
+
+  /**
+   * Join Table Name
+   * @param {string} name
+   * @return {this}
+   */
+  inTable(table) {
     return this
   }
 }

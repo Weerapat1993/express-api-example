@@ -1,5 +1,10 @@
 import express from 'express';
-import { ProductContainer } from '../controllers';
+import {
+  ProductController,
+  ShopController,
+  PurchaseController,
+  RequestController,
+} from '../controllers';
 
 const router = express.Router();
 
@@ -15,6 +20,9 @@ router.get('/', (req, res, next) => {
   res.send(dataResponse);
 });
 
-router.get('/products', ProductContainer.getAllProduct);
+router.get('/products', ProductController.getAllProduct);
+router.get('/shops', ShopController.getAllShop);
+router.get('/purchases', PurchaseController.getAllPurchase);
+router.get('/requests', RequestController.getAllRequest);
 
 export default router;
