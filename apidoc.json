@@ -1,7 +1,7 @@
 {
-  "name": "api-refund",
+  "name": "API Docs",
   "version": "0.1.0",
   "description": "apiDoc basic example",
-  "title": "Custom apiDoc browser title",
+  "title": "API Docs",
   "url" : "http://localhost:3000/api"
 }
