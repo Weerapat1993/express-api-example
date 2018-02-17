@@ -23,7 +23,7 @@ import Controller from './Controller';
 
 /**
  * @api {get} /requests/:id GET Request By ID
- * @apiSampleRequest /api/requests
+ * @apiSampleRequest /api/requests/request:1
  * @apiName GetRequestByID
  * @apiGroup Request
  * @apiUse ErrorResponse
@@ -32,7 +32,7 @@ import Controller from './Controller';
 class RequestController extends Controller {
   constructor(req, res, next) {
     super(req, res, next);
-    this.primaryKey = 'shop_id';
+    this.primaryKey = 'request_id';
     this.Model = Request;
   }
 }
