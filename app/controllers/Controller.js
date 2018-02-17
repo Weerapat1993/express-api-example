@@ -1,7 +1,28 @@
+/**
+ * @typedef {Object} Request
+ * @property {Object} params
+ * @property {Object} body
+ * @property {Object} query
+ *
+ * @typedef {Object} Response
+ * @property {(json: any) => Response} send
+ * @property {(code: number) => Response} status
+ * @property {(json: Object) => Response} json
+ */
 class ClassController {
+  /**
+   * Class Controller
+   * @constructor
+   * @param {Request} req
+   * @param {Response} res
+   * @param {Function} next
+   */
   constructor(req, res, next) {
+    /** @type {Request} */
     this.request = req;
+    /** @type {Response} */
     this.response = res;
+    /** @type {Function} */
     this.next = next;
   }
 
