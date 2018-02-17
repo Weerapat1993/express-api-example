@@ -10,3 +10,11 @@ export const ErrorCase = error => ({
   status: 'Error',
 });
 
+export const APIExpection = (res, callback) => {
+  try {
+    callback();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(ErrorCase(error));
+  }
+};

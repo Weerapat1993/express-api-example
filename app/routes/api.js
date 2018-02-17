@@ -22,7 +22,11 @@ router.get('/', (req, res, next) => {
 
 router.get('/products', ProductController.getAllProduct);
 router.get('/shops', ShopController.getAllShop);
+
+// Purchases
 router.get('/purchases', PurchaseController.getAllPurchase);
+router.get('/purchases/:id', PurchaseController.getByIDPurchase);
+
 router.get('/requests', RequestController.getAllRequest);
 
 export default router;

@@ -1,4 +1,32 @@
 import { Request } from '../models';
+import { APIExpection, SuccessCase } from '../tools/RestfulAPI';
+
+/**
+ * @api {get} /requests GET Request Lists
+ * @apiSampleRequest /api/requests
+ * @apiName GetRequests
+ * @apiGroup Request
+ *
+ * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "firstname": "John",
+ *       "lastname": "Doe"
+ *     }
+ *
+ * @apiError UserNotFound The <code>id</code> of the User was not found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Request is not found.",
+ *       "code": 404,
+ *       "status": "Not Found",
+ *     }
+ */
 
 /**
  * Get all Request
@@ -7,23 +35,10 @@ import { Request } from '../models';
  * @returns void
  */
 export const getAllRequest = (req, res) => {
-  Request.fetch()
-    .then((data) => {
-      const dataResponse = {
-        data,
-        code: 200,
-        status: 'OK',
-      };
-      res.json(dataResponse);
-    })
-    .catch((err) => {
-      const errorResponse = {
-        error: err,
-        code: 500,
-        status: 'Error',
-      };
-      res.status(500).send(errorResponse);
-    });
+  APIExpection(res, async () => {
+    const requests = await Request.fetch();
+    await res.json(SuccessCase(requests));
+  });
 };
 
 export default getAllRequest;

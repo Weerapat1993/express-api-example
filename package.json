@@ -3,14 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node ./bin/www",
+    "start": "npm run api:docs && babel-node ./bin/www",
     "migrate": "knex migrate:latest",
     "make:migration": "knex migrate:make",
+    "migrate:seed": "npm run migrate && npm run db:seed",
     "migrate:rollback": "knex migrate:rollback",
     "migrate:reset": "knex migrate:rollback",
     "migrate:refresh": "npm run migrate:reset && npm run migrate",
     "make:seeder": "knex seed:make",
-    "db:seed": "knex seed:run"
+    "db:seed": "knex seed:run",
+    "api:docs": "apidoc -i app/controllers -o public"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
