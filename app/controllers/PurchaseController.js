@@ -2,18 +2,6 @@ import { Purchase } from '../models';
 import Controller from './Controller';
 
 /**
- * @apiDefine ErrorResponse
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "Purchase is not found.",
- *       "code": 404,
- *       "status": "Not Found",
- *     }
- */
-
-/**
  * @api {get} /purchases GET Purchase Lists
  * @apiSampleRequest /api/purchases
  * @apiName GetPurchases

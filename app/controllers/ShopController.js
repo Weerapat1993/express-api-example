@@ -2,18 +2,6 @@ import { Shop } from '../models';
 import Controller from './Controller';
 
 /**
- * @apiDefine ErrorResponse
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "Shop is not found.",
- *       "code": 404,
- *       "status": "Not Found",
- *     }
- */
-
-/**
  * @api {get} /shops GET Shop Lists
  * @apiSampleRequest /api/shops
  * @apiName GetShops

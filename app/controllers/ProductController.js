@@ -1,18 +1,6 @@
 import { Product } from '../models';
 import Controller from './Controller';
 
-/**
- * @apiDefine ErrorResponse
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "Product is not found.",
- *       "code": 404,
- *       "status": "Not Found",
- *     }
- */
-
 // Function
 const getProductList = async () => {
   const products = await Product.query((qb) => {
