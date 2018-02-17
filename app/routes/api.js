@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  Route,
   ProductController,
   ShopController,
   PurchaseController,
@@ -8,25 +9,20 @@ import {
 
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-  const dataResponse = {
-    data: {
-      path: '/',
-    },
-    code: 200,
-    status: 'OK',
-  };
-  res.send(dataResponse);
-});
+// Products
+router.get('/products', Route(ProductController, 'index'));
+router.get('/products/:id', Route(ProductController, 'getByID'));
 
-router.get('/products', ProductController.getAllProduct);
-router.get('/shops', ShopController.getAllShop);
+// Shops
+router.get('/shops', Route(ShopController, 'getList'));
+router.get('/shops/:id', Route(ShopController, 'getByID'));
 
 // Purchases
-router.get('/purchases', PurchaseController.getAllPurchase);
-router.get('/purchases/:id', PurchaseController.getByIDPurchase);
+router.get('/purchases', (req, res, next) => new PurchaseController(req, res, next).getList());
+router.get('/purchases/:id', (req, res, next) => new PurchaseController(req, res, next).getByID());
 
-router.get('/requests', RequestController.getAllRequest);
+// Requests
+router.get('/requests', Route(RequestController, 'getList'));
+router.get('/requests/:id', Route(RequestController, 'getByID'));
 
 export default router;

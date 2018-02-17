@@ -1,9 +1,8 @@
 import { Purchase } from '../models';
-import { APIExpection, SuccessCase } from '../tools/RestfulAPI';
+import Controller from './Controller';
 
 /**
  * @apiDefine ErrorResponse
- * @apiError UserNotFound The <code>id</code> of the User was not found.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -43,22 +42,9 @@ import { APIExpection, SuccessCase } from '../tools/RestfulAPI';
  */
 
 /**
- * Get all Purchase
- * @param {Object} req
- * @param {{ json: Function, status: Function, send: Function }} res
- * @returns void
- */
-export const getAllPurchase = (req, res) => {
-  APIExpection(res, async () => {
-    const purchases = await Purchase.fetch();
-    await res.json(SuccessCase(purchases));
-  });
-};
-
-/**
  * @api {get} /purchases/:id GET Purchase By ID
  * @apiSampleRequest /api/purchases/purchase:1
- * @apiName GetPurchasesByID
+ * @apiName GetPurchaseByID
  * @apiGroup Purchase
  *
  * @apiParamExample {json} Request-Example:
@@ -91,18 +77,27 @@ export const getAllPurchase = (req, res) => {
  * @apiUse ErrorResponse
  */
 
-/**
- * Get by ID Purchase
- * @param {Object} req
- * @param {{ json: Function, status: Function, send: Function }} res
- * @returns void
- */
-export const getByIDPurchase = (req, res) => {
-  const { id } = req.params;
-  APIExpection(res, async () => {
-    const purchases = await Purchase.query({ where: { purchase_id: id } }).fetchOne();
-    await res.json(SuccessCase(purchases));
-  });
-};
+class PurchaseController extends Controller {
+  constructor(req, res, next) {
+    super(req, res, next);
+    this.primaryKey = 'purchase_id';
+    this.Model = Purchase;
+  }
 
-export default getAllPurchase;
+  index() {
+    this.Expectation(async () => {
+      const lists = await this.Model.fetch();
+      await this.getSuccess(lists);
+    });
+  }
+
+  getByID() {
+    const { id } = this.request.params;
+    this.Expectation(async () => {
+      const data = await this.Model.query({ where: { [this.primaryKey]: id } }).fetchOne();
+      await this.getSuccess(data);
+    });
+  }
+}
+
+export default PurchaseController;

@@ -1,23 +1,8 @@
 import { Shop } from '../models';
-import { SuccessCase, APIExpection } from '../tools/RestfulAPI';
+import Controller from './Controller';
 
 /**
- * @api {get} /shops GET Request Lists
- * @apiSampleRequest /api/shops
- * @apiName GetShops
- * @apiGroup Shop
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       "firstname": "John",
- *       "lastname": "Doe"
- *     }
- *
- * @apiError UserNotFound The <code>id</code> of the User was not found.
+ * @apiDefine ErrorResponse
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -29,16 +14,45 @@ import { SuccessCase, APIExpection } from '../tools/RestfulAPI';
  */
 
 /**
- * Get all Shop
- * @param {Object} req
- * @param {{ json: Function, status: Function, send: Function }} res
- * @returns void
+ * @api {get} /shops GET Shop Lists
+ * @apiSampleRequest /api/shops
+ * @apiName GetShops
+ * @apiGroup Shop
+ * @apiUse ErrorResponse
  */
-export const getAllShop = (req, res) => {
-  APIExpection(res, async () => {
-    const shops = await Shop.fetch();
-    await res.json(SuccessCase(shops));
-  });
-};
 
-export default getAllShop;
+/**
+ * @api {get} /shop/:id GET Shop By ID
+ * @apiSampleRequest /api/shops/shop:1
+ * @apiName GetShopByID
+ * @apiGroup Shop
+ *
+ * @apiSuccess {Object} data  Data Shop Response
+ * @apiSuccess {Number} code  Status Code
+ * @apiSuccess {String} status  Status Message
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "data": {
+ *         "shop_id": "shop:1",
+ *         "shop_name": "My Shop",
+ *         "created_at": "2018-02-17T06:02:23.000Z",
+ *         "updated_at": "2018-02-17T06:02:23.000Z",
+ *       },
+ *       "code": 200,
+ *       "status": "Success"
+ *     }
+ *
+ * @apiUse ErrorResponse
+ */
+
+class ShopController extends Controller {
+  constructor(req, res, next) {
+    super(req, res, next);
+    this.primaryKey = 'shop_id';
+    this.Model = Shop;
+  }
+}
+
+export default ShopController;

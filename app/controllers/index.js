@@ -1,9 +1,12 @@
-import * as ProductController from './ProductController';
-import * as ShopController from './ShopController';
-import * as PurchaseController from './PurchaseController';
-import * as RequestController from './RequestController';
+import ProductController from './ProductController';
+import ShopController from './ShopController';
+import PurchaseController from './PurchaseController';
+import RequestController from './RequestController';
+
+const Route = (Controller, name) => (req, res, next) => new Controller(req, res, next)[name]();
 
 export {
+  Route,
   ProductController,
   ShopController,
   PurchaseController,
