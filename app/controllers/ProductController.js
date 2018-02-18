@@ -35,35 +35,6 @@ const getProductList = async () => {
  * @apiSampleRequest /api/products/product:1
  * @apiName GetProductByID
  * @apiGroup Product
- *
- * @apiParamExample {json} Request-Example:
- *     {
- *       "id": "product:1"
- *     }
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "Authentication": "{{token}}"
- *     }
- *
- * @apiSuccess {Object} data  Data Product Response
- * @apiSuccess {Number} code  Status Code
- * @apiSuccess {String} status  Status Message
- *
- * @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       "data": {
- *         "product_id": "product:2",
- *         "product_name": "Boots",
- *         "product_price": 100,
- *         "shop_id": "shop:1",
- *         "created_at": "2018-02-17T06:02:23.000Z",
- *         "updated_at": "2018-02-17T06:02:23.000Z",
- *       },
- *       "code": 200,
- *       "status": "Success"
- *     }
- *
  * @apiUse ErrorResponse
  */
 

@@ -18,11 +18,4 @@ export default Controller;
 
 /**
  * @apiDefine ErrorResponse
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "Data is not found.",
- *       "code": 404,
- *       "status": "Not Found",
- *     }
  */
