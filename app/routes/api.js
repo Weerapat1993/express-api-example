@@ -10,6 +10,7 @@ router.get('/products/:id', Route('ProductController', 'getByID'));
 // Shops
 router.get('/shops', Route('ShopController', 'getList'));
 router.get('/shops/:id', Route('ShopController', 'getByID'));
+router.post('/shops', Route('ShopController', 'postByID'));
 
 // Purchases
 router.get('/purchases', Route('PurchaseController', 'getList'));
