@@ -3,7 +3,7 @@ import Controller from './Controller';
 
 // Function
 const getProductList = async () => {
-  const products = await Product.query((qb) => {
+  const products = await Product.collection().query((qb) => {
     qb.innerJoin('shops', 'shops.shop_id', 'products.shop_id');
     qb.select('products.*', 'shops.shop_name as shop_name');
   }).fetch();
@@ -77,7 +77,7 @@ class ProductController extends Controller {
   index() {
     this.Expectation(async () => {
       const products = await getProductList();
-      await this.getSuccess(products);
+      await this.getSuccess(200, products);
     });
   }
 }

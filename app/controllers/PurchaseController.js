@@ -71,21 +71,6 @@ class PurchaseController extends Controller {
     this.primaryKey = 'purchase_id';
     this.Model = Purchase;
   }
-
-  index() {
-    this.Expectation(async () => {
-      const lists = await this.Model.fetch();
-      await this.getSuccess(lists);
-    });
-  }
-
-  getByID() {
-    const { id } = this.request.params;
-    this.Expectation(async () => {
-      const data = await this.Model.query({ where: { [this.primaryKey]: id } }).fetchOne();
-      await this.getSuccess(data);
-    });
-  }
 }
 
 export default PurchaseController;

@@ -1,10 +1,10 @@
-import bookshelf from '../config/database';
+import ModelBase from '../config/database';
 
-const Products = bookshelf.Model.extend({
+const Products = ModelBase.extend({
   tableName: 'products',
 });
 
-export default Products.collection();
+export default Products;
 
 // import { Schema, model } from 'mongoose';
 

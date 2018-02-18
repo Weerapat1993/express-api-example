@@ -1,7 +1,7 @@
-import bookshelf from '../config/database';
+import ModelBase from '../config/database';
 
-const Purchases = bookshelf.Model.extend({
+const Purchases = ModelBase.extend({
   tableName: 'purchases',
 });
 
-export default Purchases.collection();
+export default Purchases;

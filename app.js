@@ -5,6 +5,7 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { web, api } from './app/routes';
+import { codeStatus } from './app/controllers/Controller';
 
 // App Express
 const app = express();
@@ -38,7 +39,8 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // response status code
-  res.status(err.status || 500);
+  const code = err.status || 500;
+  res.status(code);
 
   // render the error page
   // res.render('error');
@@ -46,8 +48,8 @@ app.use((err, req, res, next) => {
   // response json error
   res.send({
     error: err.message,
-    code: err.status || 500,
-    status: 'Error',
+    code,
+    status: codeStatus(code),
   });
 });
 

@@ -5,6 +5,6 @@ POST {{endpoint}}{{path}}
 Content-Type: application/json
 
 {
-  "shop_id": "shop:2",
-  "shop_name": "New Shop"
+  "shop_id": "shop:4",
+  "shop_name": "New Shop 4"
 }

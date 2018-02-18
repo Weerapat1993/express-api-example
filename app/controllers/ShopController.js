@@ -41,11 +41,6 @@ class ShopController extends Controller {
     this.primaryKey = 'shop_id';
     this.Model = Shop;
   }
-
-  postByID() {
-    const { body } = this.request;
-    this.getSuccess(body);
-  }
 }
 
 export default ShopController;

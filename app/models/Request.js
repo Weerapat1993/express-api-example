@@ -1,7 +1,7 @@
-import bookshelf from '../config/database';
+import ModelBase from '../config/database';
 
-const Requests = bookshelf.Model.extend({
+const Requests = ModelBase.extend({
   tableName: 'requests',
 });
 
-export default Requests.collection();
+export default Requests;

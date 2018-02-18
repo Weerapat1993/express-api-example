@@ -1,7 +1,8 @@
 import knex from 'knex';
 import bookshelf from 'bookshelf';
+import modelbase from 'bookshelf-modelbase';
 
-const knexData = knex({
+const db = knex({
   client: process.env.DB_CONNECTION,
   connection: {
     host     : process.env.DB_HOST,
@@ -11,4 +12,7 @@ const knexData = knex({
   },
 });
 
-export default bookshelf(knexData);
+const Bookshelf = bookshelf(db);
+const Modelbase = modelbase(Bookshelf);
+
+export default Modelbase;
