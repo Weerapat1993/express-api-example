@@ -41,6 +41,9 @@ class ClassController {
     this.response = res;
     /** @type {Function} */
     this.next = next;
+    /** @type {string} */
+    this.primaryKey = 'id';
+    this.Model = null;
   }
 
   /**
@@ -66,7 +69,7 @@ class ClassController {
       code,
       status: codeStatus(code),
     };
-    this.response.json(dataResponse);
+    this.response.status(code).json(dataResponse);
   }
 
   /**
@@ -75,13 +78,12 @@ class ClassController {
    * @param {*} error
    */
   getFailure(code, error) {
-    console.log(error);
     const errorResponse = {
       error,
       code,
       status: codeStatus(code),
     };
-    this.res.status(code).send(errorResponse);
+    this.response.status(code).send(errorResponse);
   }
 
   getList() {
@@ -104,10 +106,14 @@ class ClassController {
 
   postByID() {
     const { body } = this.request;
-    this.Expectation(async () => {
-      const data = await this.Model.create(body);
-      await this.getSuccess(201, data);
-    });
+    this.Model.create(body)
+      .then((data) => {
+        this.getSuccess(201, data);
+      })
+      .catch((error) => {
+        const err = error.details[0].message;
+        this.getFailure(400, err);
+      });
   }
 }
 

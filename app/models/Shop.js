@@ -1,6 +1,8 @@
 import Joi from 'joi';
+import Model from '../tools/Model';
 import ModelBase from '../config/database';
 
+/** @type {Model} */
 const Shops = ModelBase.extend({
   tableName: 'shops',
 
