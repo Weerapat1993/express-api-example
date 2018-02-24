@@ -23,4 +23,9 @@ router.get('/requests', Route('RequestController', 'getList'));
 router.get('/requests/:id', Route('RequestController', 'getByID'));
 router.post('/requests', Route('RequestController', 'postByID'));
 
+// Articles
+router.get('/articles', Route('ArticleController', 'getList'));
+router.get('/articles/:id', Route('ArticleController', 'getByID'));
+router.post('/articles', Route('ArticleController', 'postByID'));
+
 export default router;

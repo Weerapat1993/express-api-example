@@ -2,12 +2,14 @@ import ProductController from './ProductController';
 import ShopController from './ShopController';
 import PurchaseController from './PurchaseController';
 import RequestController from './RequestController';
+import ArticleController from './ArticleContainer';
 
 const Controller = {
   ProductController,
   ShopController,
   PurchaseController,
   RequestController,
+  ArticleController,
 };
 
 export const Route = (ControllerName, name) => (req, res, next) => (

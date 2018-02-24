@@ -1,3 +1,4 @@
+import _ from 'lodash';
 
 export const codeStatus = (code) => {
   switch (code) {
@@ -111,7 +112,7 @@ class ClassController {
         this.getSuccess(201, data);
       })
       .catch((error) => {
-        const err = error.details[0].message;
+        const err = _.get(error, 'details.0.message', 'Error');
         this.getFailure(400, err);
       });
   }
