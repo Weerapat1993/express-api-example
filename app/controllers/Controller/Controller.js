@@ -5,6 +5,7 @@ export const codeStatus = (code) => {
     case 200: return 'OK';
     case 201: return 'Created';
     case 202: return 'Accepted';
+    case 204: return 'No Content';
     case 400: return 'Bad Request';
     case 401: return 'Unauthorized';
     case 403: return 'Forbidden';
@@ -111,6 +112,18 @@ class ClassController {
     this.Model.create(body)
       .then((data) => {
         this.getSuccess(201, data);
+      })
+      .catch((error) => {
+        const err = _.get(error, 'details.0.message', 'Error');
+        this.getFailure(400, err);
+      });
+  }
+
+  updateByID() {
+    const { body } = this.request;
+    this.Model.update(body, { [this.primaryKey]: body.id })
+      .then((data) => {
+        this.getSuccess(200, data);
       })
       .catch((error) => {
         const err = _.get(error, 'details.0.message', 'Error');
