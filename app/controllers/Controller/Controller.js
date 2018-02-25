@@ -103,7 +103,14 @@ class ClassController {
         .collection()
         .query({ where: { [this.primaryKey]: id } })
         .fetchOne();
-      await this.getSuccess(200, data);
+      if (data) {
+        await this.getSuccess(200, data);
+      } else {
+        const error = {
+          message: 'Data is not found.',
+        };
+        await this.getFailure(404, error);
+      }
     });
   }
 
