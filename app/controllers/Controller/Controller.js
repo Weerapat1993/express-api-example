@@ -4,6 +4,7 @@ export const codeStatus = (code) => {
   switch (code) {
     case 200: return 'OK';
     case 201: return 'Created';
+    case 202: return 'Accepted';
     case 400: return 'Bad Request';
     case 401: return 'Unauthorized';
     case 403: return 'Forbidden';
@@ -110,6 +111,18 @@ class ClassController {
     this.Model.create(body)
       .then((data) => {
         this.getSuccess(201, data);
+      })
+      .catch((error) => {
+        const err = _.get(error, 'details.0.message', 'Error');
+        this.getFailure(400, err);
+      });
+  }
+
+  deleteByID() {
+    const { body } = this.request;
+    this.Model.destroy(body)
+      .then(() => {
+        this.getSuccess(202, body);
       })
       .catch((error) => {
         const err = _.get(error, 'details.0.message', 'Error');
