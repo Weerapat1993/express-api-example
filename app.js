@@ -29,6 +29,7 @@ passport.use(new FacebookStrategy(
     clientID: 1028852790492705,
     clientSecret: '0dd2509758802bdf54a3d2b034dc07b8',
     callbackURL: 'http://localhost:8000/auth/facebook/callback',
+    profileFields: ['id', 'displayName', 'name', 'emails', 'gender', 'photos'],
   },
   (accessToken, refreshToken, profile, done) => {
     // ส่วนนี้จะเอาข้อมูลที่ได้จาก facebook ไปทำอะไรต่อก็ได้
@@ -55,10 +56,15 @@ app.use(cors());
 app.use('/', web);
 app.use('/api', api);
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['read_stream', 'publish_actions'] }));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/profile', failureRedirect: '/' }));
 app.get('/profile', (req, res) => {
   res.json(req.user);
+});
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
 });
 
 // catch 404 and forward to error handler
