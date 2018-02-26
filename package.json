@@ -36,6 +36,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "apidoc": "^0.17.6",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-preset-es2015": "^6.24.1",
@@ -49,7 +50,11 @@
     "nodemon": "^1.15.1"
   },
   "nodemonConfig": {
-    "ignore": ["public/*", "bin/*", "rest/*"],
+    "ignore": [
+      "public/*",
+      "bin/*",
+      "rest/*"
+    ],
     "delay": "2500"
   },
   "eslintConfig": {

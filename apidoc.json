@@ -3,5 +3,5 @@
   "version": "0.1.0",
   "description": "apiDoc basic example",
   "title": "API Docs",
-  "url" : "http://localhost:8000/api"
+  "url" : "/api"
 }
