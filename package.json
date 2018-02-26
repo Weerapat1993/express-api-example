@@ -9,7 +9,7 @@
     "migrate:seed": "npm run migrate && npm run db:seed",
     "migrate:rollback": "knex migrate:rollback",
     "migrate:reset": "knex migrate:rollback",
-    "migrate:refresh": "npm run migrate:reset && npm run migrate",
+    "migrate:refresh": "npm run migrate:reset && npm run migrate && npm run db:seed",
     "make:seeder": "knex seed:make",
     "db:seed": "knex seed:run",
     "api:docs": "apidoc -i app/controllers -o public"
@@ -48,6 +48,9 @@
     "eslint-plugin-react": "^7.6.1"
   },
   "eslintConfig": {
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "rules": {
+      "import/prefer-default-export": 0
+    }
   }
 }

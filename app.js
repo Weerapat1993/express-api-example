@@ -10,9 +10,7 @@ import passport from 'passport';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { web, api } from './app/routes';
 import { codeStatus } from './app/controllers/Controller';
-
-const CLIENT_ID = 'client id จาก facebook';
-const CLIENT_SECRET = 'client secret จาก facebook';
+import { FACEBOOK_CONFIG } from './app/config/facebook';
 
 // App Express
 const app = express();
@@ -24,18 +22,10 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
-passport.use(new FacebookStrategy(
-  {
-    clientID: 1028852790492705,
-    clientSecret: '0dd2509758802bdf54a3d2b034dc07b8',
-    callbackURL: 'http://localhost:8000/auth/facebook/callback',
-    profileFields: ['id', 'displayName', 'name', 'emails', 'gender', 'photos'],
-  },
-  (accessToken, refreshToken, profile, done) => {
-    // ส่วนนี้จะเอาข้อมูลที่ได้จาก facebook ไปทำอะไรต่อก็ได้
-    done(null, profile);
-  },
-));
+passport.use(new FacebookStrategy(FACEBOOK_CONFIG, (accessToken, refreshToken, profile, done) => {
+  // ส่วนนี้จะเอาข้อมูลที่ได้จาก facebook ไปทำอะไรต่อก็ได้
+  done(null, profile);
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,24 +45,6 @@ app.use(cors());
 
 app.use('/', web);
 app.use('/api', api);
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/profile', failureRedirect: '/' }));
-app.get('/profile', (req, res) => {
-  res.json(req.user);
-});
-
-app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
-
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 // error handler
 app.use((err, req, res, next) => {
