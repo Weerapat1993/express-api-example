@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run api:docs && babel-node ./bin/www",
+    "start": "npm run api:docs && nodemon --exec babel-node ./bin/www",
     "migrate": "knex migrate:latest",
     "make:migration": "knex migrate:make",
     "migrate:seed": "npm run migrate && npm run db:seed",
@@ -45,7 +45,12 @@
     "eslint-plugin-flowtype": "^2.44.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1"
+    "eslint-plugin-react": "^7.6.1",
+    "nodemon": "^1.15.1"
+  },
+  "nodemonConfig": {
+    "ignore": ["public/*", "bin/*", "rest/*"],
+    "delay": "2500"
   },
   "eslintConfig": {
     "extends": "airbnb",

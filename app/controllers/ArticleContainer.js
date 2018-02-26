@@ -17,6 +17,16 @@ import Controller from './Controller';
  * @apiUse ErrorResponse
  */
 
+/**
+ * @api {post} /articles POST Create Article
+ * @apiSampleRequest /api/articles
+ * @apiParam {String} title  Title Story
+ * @apiParam {String} description     Story Descripiton
+ * @apiName PostCreateArticle
+ * @apiGroup Article
+ * @apiUse ErrorResponse
+ */
+
 class ArticleController extends Controller {
   constructor(req, res, next) {
     super(req, res, next);

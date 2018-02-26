@@ -31,6 +31,6 @@ router.put('/articles', Route('ArticleController', 'updateByID'));
 router.delete('/articles', Route('ArticleController', 'deleteByID'));
 
 // Refund
-router.get('/refund-orders', Route('RefuncController', 'byID'));
+router.get('/refund-orders/:id', Route('RefundController', 'byID'));
 
 export default router;
