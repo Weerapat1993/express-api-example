@@ -5,6 +5,7 @@ import RequestController from './RequestController';
 import ArticleController from './ArticleContainer';
 import RefundController from './RefundController';
 import UserController from './UserController';
+import AuthController from './AuthController';
 
 const Controller = {
   ProductController,
@@ -14,6 +15,7 @@ const Controller = {
   ArticleController,
   RefundController,
   UserController,
+  AuthController,
 };
 
 export const Route = (ControllerName, name) => (req, res, next) => (

@@ -12,9 +12,11 @@ import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { web, api } from './app/routes';
 import { codeStatus } from './app/controllers/Controller';
 import { FACEBOOK_CONFIG } from './app/config/facebook';
+import { Route } from './app/controllers';
 
 // App Express
 const app = express();
+app.use(Route('AuthController', 'getAuth'));
 
 // Set passport
 passport.serializeUser((user, done) => {
@@ -35,6 +37,8 @@ passport.use(new FacebookStrategy(FACEBOOK_CONFIG, (accessToken, refreshToken, p
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

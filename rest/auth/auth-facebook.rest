@@ -1,4 +1,4 @@
-@auth = http://localhost:8000/auth/facebook
-
+@auth = http://localhost:8000/getAuthResponse
 GET {{auth}}
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndlZXJhcGF0LnRoYXdhdGNob2tldGF3ZWVAZ21haWwuY29tIiwiaWF0IjoxNTE5NzMxNTE3fQ.0ETotuChbY2MfUFKccYX1_lxccJ69uaXw56CFgEwsXU

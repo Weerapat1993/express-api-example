@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import jwt from 'jsonwebtoken';
 import { User } from '../models';
 import Controller from './Controller';
 
@@ -55,6 +54,10 @@ class UserController extends Controller {
         const err = _.get(error, 'details.0.message', 'Error');
         this.getFailure(400, err);
       });
+  }
+
+  getAuthResponse() {
+    this.getSuccess(200, this.request.auth().user);
   }
 }
 

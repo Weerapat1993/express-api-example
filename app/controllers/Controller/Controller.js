@@ -23,6 +23,7 @@ export const codeStatus = (code) => {
  * @property {Object} params
  * @property {Object} body
  * @property {Object} query
+ * @property {() => ({ user: Object, isAuth: bool })} auth
  *
  * @typedef {Object} Response
  * @property {(json: any) => Response} send
