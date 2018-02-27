@@ -33,4 +33,7 @@ router.delete('/articles', Route('ArticleController', 'deleteByID'));
 // Refund
 router.get('/refund-orders/:id', Route('RefundController', 'byID'));
 
+// Users
+router.post('/users', Route('UserController', 'createData'));
+
 export default router;

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import jwt from 'jsonwebtoken';
 import { User } from '../../models';
 import { Controller } from '../Kernel';
 
@@ -9,45 +10,30 @@ class UserController extends Controller {
     this.Model = User;
   }
 
-  authFacebook() {
-    const {
-      id,
-      displayName,
-      name,
-      gender,
-      photos,
-      jwtoken,
-      _json,
-    } = this.request.user;
-    const formatData = {
-      facebook_id: id,
-      email: _json.email,
-      name: displayName,
-      firstname: name.givenName,
-      lastname: name.familyName,
-      gender,
-      avatar: _.get(photos, '0.value', ''),
-      remember_token: jwtoken,
-    };
+  createData() {
+    const { email } = this.request.body;
     this.Expectation(async () => {
       const user = await this.Model
         .collection()
-        .query({ where: { facebook_id: id } })
+        .query({ where: { email } })
         .fetchOne();
       if (user) {
-        const { token } = this.request.user;
-        await this.getSuccess(200, { token });
+        const payload = { email };
+        const token = jwt.sign(payload, 'secret');
+        await this.getSuccess(200, { token, user });
       } else {
-        this.postData(formatData);
+        this.postData(this.request.body);
       }
     });
   }
 
   postData(body) {
     this.Model.create(body)
-      .then(() => {
-        const { token } = this.request.user;
-        this.getSuccess(201, { token });
+      .then((data) => {
+        const payload = { email: data.email };
+        const user = data;
+        const token = jwt.sign(payload, 'secret');
+        this.getSuccess(201, { token, user });
       })
       .catch((error) => {
         const err = _.get(error, 'details.0.message', 'Error');
