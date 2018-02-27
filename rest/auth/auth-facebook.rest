@@ -1,0 +1,4 @@
+@auth = http://localhost:8000/auth/facebook
+
+GET {{auth}}
+Content-Type: application/json

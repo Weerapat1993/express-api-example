@@ -7,6 +7,7 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { web, api } from './app/routes';
 import { codeStatus } from './app/controllers/Controller';
@@ -24,7 +25,11 @@ passport.deserializeUser((obj, done) => {
 });
 passport.use(new FacebookStrategy(FACEBOOK_CONFIG, (accessToken, refreshToken, profile, done) => {
   // ส่วนนี้จะเอาข้อมูลที่ได้จาก facebook ไปทำอะไรต่อก็ได้
-  done(null, profile);
+  const user = profile;
+  const { email } = user._json;
+  const payload = { email };
+  user.token = jwt.sign(payload, 'secret');
+  done(null, user);
 }));
 
 // view engine setup

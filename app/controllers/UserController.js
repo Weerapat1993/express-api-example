@@ -37,8 +37,7 @@ class UserController extends Controller {
         .query({ where: { facebook_id: id } })
         .fetchOne();
       if (user) {
-        const payload = { id: user.id };
-        const token = jwt.sign(payload, 'secret');
+        const { token } = this.request.user;
         await this.getSuccess(200, { token });
       } else {
         this.postData(formatData);
@@ -48,8 +47,9 @@ class UserController extends Controller {
 
   postData(body) {
     this.Model.create(body)
-      .then((data) => {
-        this.getSuccess(201, data);
+      .then(() => {
+        const { token } = this.request.user;
+        this.getSuccess(201, { token });
       })
       .catch((error) => {
         const err = _.get(error, 'details.0.message', 'Error');
