@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import { User } from '../models';
-import Controller from './Controller';
-
+import { User } from '../../models';
+import { Controller } from '../Kernel';
 
 class UserController extends Controller {
   constructor(req, res, next) {

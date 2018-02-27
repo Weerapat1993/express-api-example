@@ -1,5 +1,5 @@
-import { Shop } from '../models';
-import Controller from './Controller';
+import { Shop } from '../../models';
+import { Controller } from '../Kernel';
 
 /**
  * @api {get} /shops GET Shop Lists

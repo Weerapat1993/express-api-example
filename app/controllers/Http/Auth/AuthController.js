@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
-import { User } from '../models';
-import Controller from './Controller';
+import { User } from '../../../models';
+import { Controller } from '../../Kernel';
 
 class AuthController extends Controller {
   constructor(req, res, next) {

@@ -1,5 +1,5 @@
-import { Purchase } from '../models';
-import Controller from './Controller';
+import { Purchase } from '../../models';
+import { Controller } from '../Kernel';
 
 /**
  * @api {get} /purchases GET Purchase Lists

@@ -9,10 +9,10 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
-import { web, api } from './app/routes';
-import { codeStatus } from './app/controllers/Controller';
+import web from './routes/web';
+import api from './routes/api';
+import { Route, codeStatus } from './app/controllers';
 import { FACEBOOK_CONFIG } from './app/config/facebook';
-import { Route } from './app/controllers';
 
 // App Express
 const app = express();
@@ -37,8 +37,6 @@ passport.use(new FacebookStrategy(FACEBOOK_CONFIG, (accessToken, refreshToken, p
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

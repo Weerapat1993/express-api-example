@@ -1,5 +1,5 @@
-import { Article } from '../models';
-import Controller from './Controller';
+import { Article } from '../../models';
+import { Controller } from '../Kernel';
 
 /**
  * @api {get} /articles GET Article Lists

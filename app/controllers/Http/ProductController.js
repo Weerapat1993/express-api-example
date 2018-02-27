@@ -1,5 +1,5 @@
-import { Product } from '../models';
-import Controller from './Controller';
+import { Product } from '../../models';
+import { Controller } from '../Kernel';
 
 // Function
 const getProductList = async () => {

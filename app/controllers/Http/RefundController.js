@@ -1,6 +1,6 @@
-import { Refund } from '../models';
-import Controller from './Controller';
-import resData from './assets/json/refundByID.json';
+import { Refund } from '../../models';
+import { Controller } from '../Kernel';
+import resData from './refundByID.json';
 
 /**
  * @api {get} /purchases/:id GET Refund By ID

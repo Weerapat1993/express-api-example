@@ -1,29 +1,5 @@
-import ProductController from './ProductController';
-import ShopController from './ShopController';
-import PurchaseController from './PurchaseController';
-import RequestController from './RequestController';
-import ArticleController from './ArticleContainer';
-import RefundController from './RefundController';
-import UserController from './UserController';
-import AuthController from './AuthController';
+import Controller, { Route } from './Http';
 
-const Controller = {
-  ProductController,
-  ShopController,
-  PurchaseController,
-  RequestController,
-  ArticleController,
-  RefundController,
-  UserController,
-  AuthController,
-};
-
-export const Route = (ControllerName, name) => (req, res, next) => (
-  new Controller[ControllerName](req, res, next)[name]()
-);
-
+export { Route };
+export * from './Kernel';
 export default Controller;
-
-/**
- * @apiDefine ErrorResponse
- */

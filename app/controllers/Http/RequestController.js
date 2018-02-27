@@ -1,5 +1,5 @@
-import { Request } from '../models';
-import Controller from './Controller';
+import { Request } from '../../models';
+import { Controller } from '../Kernel';
 
 /**
  * @api {get} /requests GET Request Lists

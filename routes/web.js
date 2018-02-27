@@ -1,6 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import { Route } from '../controllers';
+import { Route } from '../app/controllers';
 
 const router = express.Router();
 
