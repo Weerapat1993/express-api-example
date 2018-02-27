@@ -4,6 +4,7 @@ import Request from './Request';
 import Shop from './Shop';
 import Article from './Article';
 import Refund from './Refund';
+import User from './User';
 
 export {
   Product,
@@ -12,4 +13,5 @@ export {
   Shop,
   Article,
   Refund,
+  User,
 };

@@ -41,7 +41,14 @@ class Models {
     return this;
   }
 
-  findOrCreate() {
+  /**
+  * Select a model based on data and insert if not found
+  * @param {Object} data
+  * @param {Object} [options] Options for model.fetch and model.save
+  * @param {Object} [options.defaults] Defaults to apply to a create
+  * @return {Promise} single Model
+  */
+  findOrCreate(data, options) {
     return this;
   }
 

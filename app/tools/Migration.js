@@ -143,6 +143,14 @@ class Table {
   inTable(table) {
     return this
   }
+
+  /**
+   * Unique Data
+   * @return {this}
+   */
+  unique() {
+    return this
+  }
 }
 
 
