@@ -9,6 +9,7 @@ const Article = ModelBase.extend({
   validate: {
     title: Joi.string().required(),
     description: Joi.string().required(),
+    user_id: Joi.string().required(),
   },
 });
 
