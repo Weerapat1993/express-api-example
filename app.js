@@ -11,12 +11,12 @@ import jwt from 'jsonwebtoken';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import web from './routes/web';
 import api from './routes/api';
-import { Route, codeStatus } from './app/controllers';
+import { Middleware, ErrorMiddleware } from './app/controllers';
 import { FACEBOOK_CONFIG } from './app/config/facebook';
 
 // App Express
 const app = express();
-app.use(Route('AuthController', 'getAuth'));
+app.use(Middleware('AuthMiddleware', 'getAuth'));
 
 // Set passport
 passport.serializeUser((user, done) => {
@@ -54,24 +54,6 @@ app.use('/', web);
 app.use('/api', api);
 
 // error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // response status code
-  const code = err.status || 500;
-  res.status(code);
-
-  // render the error page
-  // res.render('error');
-
-  // response json error
-  res.send({
-    error: err.message,
-    code,
-    status: codeStatus(code),
-  });
-});
+app.use(ErrorMiddleware);
 
 module.exports = app;
