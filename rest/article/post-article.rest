@@ -6,5 +6,6 @@ Content-Type: application/json
 
 {
   "title": "Title 2",
-  "description": "## Test 2"
+  "description": "## Test 2",
+  "user_id": 1
 }

@@ -43,10 +43,30 @@ class ArticleController extends Controller {
     this.Model = Article;
   }
 
-  getByID() {
+  getList() {
     this.Expectation(async () => {
       const products = await getArticleList();
       await this.getSuccess(200, products);
+    });
+  }
+
+  getByID() {
+    const { id } = this.request.params;
+    this.Expectation(async () => {
+      const data = await this.Model
+        .collection()
+        .query((qb) => {
+          qb.innerJoin('users', 'users.id', 'articles.id');
+          qb.select('articles.*', 'users.name as user_name', 'users.avatar');
+          return { where: { [this.primaryKey]: id } };
+        })
+        .fetchOne();
+      if (data) {
+        await this.getSuccess(200, data);
+      } else {
+        const error = 'Data is not found.';
+        await this.getFailure(404, error);
+      }
     });
   }
 }
