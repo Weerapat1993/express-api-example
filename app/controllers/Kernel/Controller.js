@@ -31,6 +31,7 @@ class ClassController {
     /** @type {string} */
     this.primaryKey = 'id';
     this.Model = null;
+    this.query = () => {};
   }
 
   /**
@@ -75,7 +76,12 @@ class ClassController {
 
   getList() {
     this.Expectation(async () => {
-      const lists = await this.Model.collection().fetch();
+      const lists = await this.Model
+        .collection()
+        .query((qb) => {
+          this.query(qb);
+        })
+        .fetch();
       await this.getSuccess(200, lists);
     });
   }
@@ -85,7 +91,10 @@ class ClassController {
     this.Expectation(async () => {
       const data = await this.Model
         .collection()
-        .query({ where: { [this.primaryKey]: id } })
+        .query((qb) => {
+          this.query(qb);
+          return { where: { [this.primaryKey]: id } };
+        })
         .fetchOne();
       if (data) {
         await this.getSuccess(200, data);
