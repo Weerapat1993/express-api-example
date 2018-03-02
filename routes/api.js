@@ -34,6 +34,7 @@ router.delete('/articles', Route('ArticleController', 'deleteByID'));
 router.get('/refund-orders/:id', Route('RefundController', 'byID'));
 
 // Users
+router.get('/users/token', Route('UserController', 'getAuthResponse'));
 router.post('/users', Route('UserController', 'createData'));
 
 export default router;

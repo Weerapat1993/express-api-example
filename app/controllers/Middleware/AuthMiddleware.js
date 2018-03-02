@@ -1,5 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import { Middleware } from '../Kernel';
+import { User } from '../../models';
 
 class AuthMiddleware extends Middleware {
   async getAuth() {
@@ -10,7 +11,7 @@ class AuthMiddleware extends Middleware {
       let user = {};
       if (token) {
         const decoded = await jwtDecode(token);
-        user = await this.Model.collection()
+        user = await User.collection()
           .query({ where: { email: decoded.email } })
           .fetchOne();
       }
@@ -27,6 +28,7 @@ class AuthMiddleware extends Middleware {
       }
       this.next();
     } catch (error) {
+      console.log(error)
       this.request.auth = () => ({
         isAuth: false,
         user: {},

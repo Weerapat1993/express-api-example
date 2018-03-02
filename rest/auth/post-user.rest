@@ -3,3 +3,8 @@
 
 POST {{endpoint}}{{path}}
 Content-Type: application/json
+
+{
+  "email": "weerapat.thawatchoketawee@gmail.com",
+  "name": "Weerapat Top"
+}
