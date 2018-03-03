@@ -86,18 +86,18 @@ class ClassController {
     });
   }
 
-  getByID() {
-    const { id } = this.request.params;
+  getByID(statusCode, id) {
+    const paramID = id || this.request.params.id;
     this.Expectation(async () => {
       const data = await this.Model
         .collection()
         .query((qb) => {
           this.query(qb);
-          return { where: { [this.primaryKey]: id } };
+          return { where: { [this.primaryKey]: paramID } };
         })
         .fetchOne();
       if (data) {
-        await this.getSuccess(200, data);
+        await this.getSuccess(statusCode || 200, data);
       } else {
         const error = 'Data is not found.';
         await this.getFailure(404, error);
@@ -121,7 +121,7 @@ class ClassController {
     const { body } = this.request;
     this.Model.update(body, { [this.primaryKey]: body.id })
       .then((data) => {
-        this.getSuccess(200, data);
+        this.getByID(200, data[this.primaryKey]);
       })
       .catch((error) => {
         const err = _.get(error, 'details.0.message', 'Error');
