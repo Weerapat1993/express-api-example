@@ -121,7 +121,7 @@ class ClassController {
     const { body } = this.request;
     this.Model.update(body, { [this.primaryKey]: body.id })
       .then((data) => {
-        this.getByID(200, data[this.primaryKey]);
+        this.getSuccess(200, data);
       })
       .catch((error) => {
         const err = _.get(error, 'details.0.message', 'Error');
