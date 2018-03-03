@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
-import { User } from '../../models';
+import User from '../../models/User';
 import { Controller } from '../Kernel';
 
 class UserController extends Controller {

@@ -1,4 +1,4 @@
-import { Refund } from '../../models';
+import Refund from '../../models/Refund';
 import { Controller } from '../Kernel';
 import resData from './refundByID.json';
 

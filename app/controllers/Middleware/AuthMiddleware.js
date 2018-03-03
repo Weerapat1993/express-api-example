@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import { Middleware } from '../Kernel';
-import { User } from '../../models';
+import User from '../../models/User';
 
 class AuthMiddleware extends Middleware {
   async getAuth() {

@@ -1,4 +1,5 @@
-import { Article, User } from '../../models';
+import Article from '../../models/Article';
+import User from '../../models/User';
 import { Controller } from '../Kernel';
 
 /**
