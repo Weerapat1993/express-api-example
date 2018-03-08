@@ -3,7 +3,7 @@ import { Controller } from '../Kernel';
 import resData from './refundByID.json';
 
 /**
- * @api {get} /purchases/:id GET Refund By ID
+ * @api {get} /refund-orders/:id GET Refund By ID
  * @apiSampleRequest /api/refund-orders/reforder:1
  * @apiName GetRefundByID
  * @apiGroup Refund
