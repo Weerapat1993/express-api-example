@@ -23,6 +23,7 @@ import { Controller } from '../Kernel';
  * @apiSampleRequest /api/articles
  * @apiParam {String} title  Title Story
  * @apiParam {String} description     Story Descripiton
+ * @apiParam {Number} user_id     User ID
  * @apiName PostCreateArticle
  * @apiGroup Article
  * @apiUse ErrorResponse
@@ -37,6 +38,8 @@ class ArticleController extends Controller {
       qb.innerJoin('users', 'users.id', 'articles.user_id');
       qb.select('articles.*', 'users.name as user_name', 'users.avatar');
     };
+    this.tableName = 'articles';
+    this.isJoin = true;
   }
 
   postByID() {

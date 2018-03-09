@@ -10,6 +10,15 @@ import resData from './refundByID.json';
  * @apiUse ErrorResponse
  */
 
+/**
+ * @api {put} /refund-orders PUT Refund Update
+ * @apiSampleRequest /api/refund-orders
+ * @apiParam {String} status  Refund Status
+ * @apiName UpdateRefund
+ * @apiGroup Refund
+ * @apiUse ErrorResponse
+ */
+
 class RefundController extends Controller {
   constructor(req, res, next) {
     super(req, res, next);
@@ -20,6 +29,11 @@ class RefundController extends Controller {
   byID() {
     const { data } = resData;
     this.getSuccess(200, data);
+  }
+
+  update() {
+    const { body } = this.request;
+    this.getSuccess(200, body);
   }
 }
 

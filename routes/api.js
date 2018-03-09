@@ -12,6 +12,7 @@ router.delete('/articles', Route('ArticleController', 'deleteByID'));
 
 // Refund
 router.get('/refund-orders/:id', Route('RefundController', 'byID'));
+router.put('/refund-orders', Route('RefundController', 'update'));
 
 // Users
 router.get('/users/token', Route('UserController', 'getAuthResponse'));
